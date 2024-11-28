@@ -26,7 +26,7 @@ $financeiro = mysqli_query($conn, $sql);
             <div class="card">
                 <div class="card-header">
                    <h4>Categorias de despesas
-                    <a href="despesa-create.php" class="btn btn-outline-dark float-end">Criar categoria</a>
+                   <a href="index.php" class="btn btn-outline-primary float-end">Voltar</a>
                    </h4>
                 </div>
                 <div class="card-body">

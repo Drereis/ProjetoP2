@@ -2,8 +2,41 @@
 session_start();
 require_once("conexao.php");
 
-?>
+if(isset($_GET['id_mes']) && !empty($_GET['id_mes'])) {
+  $id_mes = $_GET['id_mes'];
+  // Para a consulta de entradas
+  $sql_entradas = "SELECT SUM (valor) AS total_entradas FROM movimentacao WHERE tipo = 'entrada AND id_mes = $id_mes";
+  $result_entradas = mysqli_query($conn, $sql_entradas);
+  if ($result_entradas) {
+    $row_entradas = mysqli_fetch_assoc($resukt_entradas);
+    $total_entradas = $row_entradas['total_entradas'];
+  } else {
+    $total_entradas = 0;
+  }
 
+  // Para a consulta de saidas
+  $sql_saidas = "SELECT SUM (valor) AS total_saidas FROM movimentacao WHERE tipo = 'saida' AND id_mes = $id_mes";
+  $result_saidas = mysqli_query($conn, $sql_saidas);
+  if ($result_saidas) {
+    $row_saidas = mysqli_fetch_assoc($result_saidas);
+    $total_saidas = $row_saidas['total_saidas'];
+  } else {
+    $total_saidas = 0;
+  }
+
+  if ($saldo_final > 0) {
+    // $saldo_cor = "text-sucess"; verde para positivo
+  } elseif ($saldo_final < 0) {
+    // $saldo_cor = "text-danger"; vermelha para negativo
+  } else {
+    // $saldo_cor = "text-warning"; amarelo para neutro
+  }
+} else {
+  echo "ID do mês não encontrado.";
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +52,7 @@ require_once("conexao.php");
         <div class="cold-md-12">
           <div class="card-header">
             <h4>Resumo mensal
-            <a href="index.php" class="btn btn-outline-primary float-end">Adicionar Mês</a>
+            <a href="index.php" class="btn btn-outline-primary float-end">Voltar</a>
             </h4>
             </div>
             <div class="card-body">

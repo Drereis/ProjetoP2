@@ -5,6 +5,11 @@ require_once("conexao.php");
 $sql = "SELECT * FROM gastos";
 $categorias = mysqli_query($conn, $sql);
 
+if (isset($_GET['id_mes'])) {
+    $id_mes = $_GET['id_mes']; 
+} else {
+    echo "O parâmetro id_mes não foi encontrado.";
+}
 ?>  
 
 <!DOCTYPE html>
@@ -23,11 +28,12 @@ $categorias = mysqli_query($conn, $sql);
                 <div class="card">
                     <div class="card-header">
                         <h4>Cadastro de Movimentação
-                            <a href="index.php" class="btn btn-outline-danger float-end">Voltar</a>
+                            <a href="index.php" class="btn btn-outline-primary float-end">Voltar</a>
                         </h4>
                     </div>
                         <div class= "card-body">
                             <form action="acoes.php" method="POST">
+                                <input type="hidden" name="id_mes" value="<?php echo $id_mes; ?>">
                                 <div class="mb-3">
                                     <label for="txtDataTransacao">Data</label>
                                     <input type="date" name="txtDataTransacao" class="form-control" required>
@@ -49,13 +55,13 @@ $categorias = mysqli_query($conn, $sql);
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtCategoria">Categoria</label>
-                                    <select name="TxtCategoria" class="form-select" required>
+                                    <select name="txtCategoria" id="txtCategoria" class="form-select" required>
                                         <?php while ($categoria = mysqli_fetch_array($categorias)): ?>
                                             <option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['categoria']; ?></option>
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
-                                <button type="submit" name="create_move" class="btn btn-outline-primary">Registrar Movimentação</button>
+                                <button type="submit" name="create_move" class="btn btn-outline-success">Registrar Movimentação</button>
                             </form>
                             <?php include('message.php'); ?>
                         </div>

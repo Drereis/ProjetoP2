@@ -31,7 +31,7 @@ if (!isset($_GET['id'])) {
             <div class="card">
                 <div class="card-header">
                     <h4>Editar Categoria
-                        <a href="dindex.php" class="btn btn-outline-dark float-end">Voltar</a>
+                        <a href="dindex.php" class="btn btn-outline-primary float-end">Voltar</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -50,7 +50,7 @@ if (!isset($_GET['id'])) {
                             <input type="text" name="categoria" value="<?=$gastos['categoria']?>" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <button type="submit" name="edit_categoria" class="btn btn-outline-dark">Salvar</button>
+                            <button type="submit" name="edit_categoria" class="btn btn-outline-success">Salvar</button>
                         </div>
                     </form>
                     <?php

@@ -6,6 +6,7 @@ $sql = "SELECT * FROM meses";
 $meses = mysqli_query($conn, $sql);
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -51,10 +52,9 @@ $meses = mysqli_query($conn, $sql);
                             </div>
                             <div class="mb-3">
                                 <label for="txtAno">Ano</label>
-                                <input type="text" name="txtAno" id="txtAno"  class="form-control" required>
+                                <input type="number" name="txtAno" id="txtAno"  class="form-control" min="1900" max="2100" required>
                             </div>
-                                <button type="submit" name="create_mes" class="btn btn-outline-primary float-end">Adicionar Mês</button>
-                            <div>
+                                <button type="submit" name="create_mes" class="btn btn-success float-end">Adicionar Mês</button>
                         </form>
                     </div>
                 </div>
@@ -79,9 +79,12 @@ $meses = mysqli_query($conn, $sql);
                                     <td><?php echo $mes['nome_mes']; ?></td>
                                     <td><?php echo $mes['ano']; ?></td>
                                     <td>
-                                        <a href="move-create.php?id_mes=<?=$mes['id_mes']?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i> Adicionar Movimentações</a>
+                                        <a href="move-create.php?"id_mes=<?=$mes['id_mes']?> class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i> Adicionar Movimentações</a>
+                                        <a href="resumo-m.php?"id_mes=<?=$mes['id_mes']?> class="btn btn-dark btn-sm">Resumo</a>
 
-                                        <a href="resumo-m.php" class="btn btn-dark btn-sm">Resumo</a>
+                                        <form action="acoes.php" method="POST" class="d-inline">
+                                            <button onclick="return confirm('Tem certeza que deseja excluir?')" name="delete_mes" type="submit" value="<?=$mes['id_mes']?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

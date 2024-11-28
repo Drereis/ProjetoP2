@@ -38,7 +38,9 @@ if (isset($_POST['create_categoria'])) {
             <div class="card">
                 <div class="card-header">
                     <h4><i class="bi bi-file-earmark-plus"></i> Criar categoria
-                        <a href="index.php" class="btn btn-outline-primary float-end">Voltar</a>
+                        <a href="index.php" class="btn btn-outline-primary float-end">Voltar</a> 
+                        
+                        <a href="dindex.php" class="btn btn-outline-dark float-end">Editar Categorias</a>
                     </h4>
                 </div>
                 <!-- Coluna para adicionar a categoria a lista de categorias -->
